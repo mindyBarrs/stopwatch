@@ -53,25 +53,38 @@ const Stopwatch: React.FC<StopwatchProps> = ({ initialSeconds }) => {
 		<div className="stopwatch">
 			<h1 className="stopwatch-timer">{formattedSeconds(secondsElapsed)}</h1>
 
-			{!isRunning ? (
-				<button type="button" className="start-btn" onClick={handleStartClick}>
-					Start
-				</button>
-			) : (
-				<button type="button" className="stop-btn" onClick={handleStopClick}>
-					Stop
-				</button>
-			)}
-			{secondsElapsed !== 0 && !isRunning && (
-				<button type="button" onClick={handleResetClick}>
-					Reset
-				</button>
-			)}
-			{isRunning && (
-				<button type="button" onClick={handleLapClick}>
-					Lap
-				</button>
-			)}
+			<div className="stopwatch-controls">
+				{!isRunning ? (
+					<button
+						type="button"
+						className="start-btn"
+						onClick={handleStartClick}
+					>
+						Start
+					</button>
+				) : (
+					<button type="button" className="stop-btn" onClick={handleStopClick}>
+						Stop
+					</button>
+				)}
+
+				{secondsElapsed !== 0 && !isRunning && (
+					<button
+						type="button"
+						className="reset-btn"
+						onClick={handleResetClick}
+					>
+						Reset
+					</button>
+				)}
+
+				{isRunning && (
+					<button type="button" className="lap-btn" onClick={handleLapClick}>
+						Lap
+					</button>
+				)}
+			</div>
+
 			<div className="stopwatch-laps">
 				{laps.map((lap, i) => (
 					<Lap
